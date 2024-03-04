@@ -64,6 +64,11 @@ export class PhotoEditorComponent implements OnInit {
         if (this.member) {
 
           this.member.photos.push(photo)
+          if (photo.isMain && this.user && this.member) {
+            this.user.photoUrl = photo.url;
+            this.accountService.setCurrentUser(this.user)
+            this.member.photoUrl = photo.url;
+          }
           this.toastr.success("Successfully uploaded")
         }
       })

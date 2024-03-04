@@ -4,6 +4,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @NgModule({
   declarations: [],
@@ -18,12 +21,20 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
       preventDuplicates: true,
       enableHtml: true,
     }),
+    BsDatepickerModule.forRoot(),
+    PaginationModule.forRoot(),
+    ButtonsModule.forRoot(),
+
+    
   ],
   exports: [
     BsDropdownModule,
     FontAwesomeModule,
     ToastrModule,
     TabsModule,
+    BsDatepickerModule,
+    PaginationModule,
+    ButtonsModule,
   ]
 })
-export class SharedModule {}
+export class SharedModule { }
