@@ -1,8 +1,8 @@
-<h4>Internal Server Error</h4>
+<h4>{{ error?.title }}</h4>
 <ng-container *ngIf="error">
-    <h5 class="text-danger">Error: {{ error.message }}</h5>
-    <p class="font-weight-bold">blah blah blah...</p>
-    <code class="mt-b" style="background-color: whitesmoke">
-        {{ error.details }}
-    </code>
+  <h5 class="text-danger">Error: {{ error.message }}</h5>
+  <p class="font-weight-bold">blah blah blah...</p>
+  <code class="mt-b" style="background-color: whitesmoke">
+    {{ error.details }}
+  </code>
 </ng-container>

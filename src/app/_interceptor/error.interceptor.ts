@@ -54,8 +54,10 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
             }
           default:
             {
+              const navigationExtras: NavigationExtras = { state: { error: error.error } }
               toastr.error("Internal Server Error")
               console.log(error.error);
+                router.navigateByUrl("/server-error", navigationExtras)
               break;
             }
         }
