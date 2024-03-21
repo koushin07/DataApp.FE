@@ -60,8 +60,11 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
 
   onTabActivated(data: TabDirective) {
     this.activeTab = data
+    console.log(`this is the headings = ${this.activeTab.heading} and this is the user ${this.user}`);
     if (this.activeTab.heading === 'Message' && this.user) {
+      console.log("hub connection starting...");
       this.messageService.createHubConnection(this.user, this.member.userName)
+      console.log("hub connection started");
     } else {
       this.messageService.stopHubConnection()
     }
@@ -69,7 +72,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
 
   selectTab(heading: string) {
     if (this.memberTabs) {
-    this.memberTabs.tabs.find(x =>x.heading === heading)!.active = true      
+    this.memberTabs.tabs.find(x =>x.heading === heading)!.active = true;    
     }
   }
 

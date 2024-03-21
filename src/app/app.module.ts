@@ -36,6 +36,9 @@ import { HasRoleDirective } from './_directives/has-role.directive';
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
+import { CustomRouteReuseStrategy } from './_services/CustomRouteReuseStrategy';
+import { RouteReuseStrategy } from '@angular/router';
+import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +62,8 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
     UserManagementComponent,
     PhotoManagementComponent,
     RolesModalComponent,
+    ConfirmDialogComponent,
+
 
   ],
   imports: [
@@ -75,6 +80,7 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
 
   ],
   providers: [
+    {provide: RouteReuseStrategy, useClass: CustomRouteReuseStrategy},
     provideHttpClient(withInterceptors([errorInterceptor, jwtInterceptor, loadingInterceptor]))
   ],
   bootstrap: [AppComponent],

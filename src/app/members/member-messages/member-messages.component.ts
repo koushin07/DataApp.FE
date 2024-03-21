@@ -6,6 +6,7 @@ import { TimeagoModule } from 'ngx-timeago';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-member-messages',
   standalone: true,
   templateUrl: './member-messages.component.html',
@@ -20,7 +21,6 @@ export class MemberMessagesComponent implements OnInit {
 
   constructor(public messageService: MessageService){}
   ngOnInit(): void {
-   
   }
   
   sendMessage() {

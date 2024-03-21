@@ -6,6 +6,7 @@ import { getPaginatedResults, getPaginationHeaders } from './PaginationHelper';
 import { Message } from '../_model/message';
 import { User } from '../_model/user';
 import { BehaviorSubject, take } from 'rxjs';
+import { Group } from '../_model/group';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class MessageService {
   constructor(private http: HttpClient) { }
 
   createHubConnection(user: User, otherUsername: string) {
-    console.log(JSON.stringify(user));
+    // console.log(JSON.stringify(user));
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.hubUrl + "message?user=" + otherUsername, {
         accessTokenFactory: () => user.token
@@ -31,7 +32,26 @@ export class MessageService {
     
     this.hubConnection.start().catch(err => console.log(err))
     this.hubConnection.on("ReceiveMessageThread", messages => {
+     
       this.messageThreadSource.next(messages)
+    })
+
+    this.hubConnection.on("UpdatedGroup", (group: Group) => {
+      
+     if (group.connections.some(x => x.username === otherUsername)) {
+      
+        this.messageThread$.pipe(take(1)).subscribe({
+          next: messages => {
+            messages.forEach(message => {
+              if (!message.dateRead) {
+                message.dateRead = new Date(Date.now())
+              }
+            })
+            this.messageThreadSource.next([...messages]);
+          }
+        })
+      }
+      
     })
 
     this.hubConnection.on("NewMessage", message => {
