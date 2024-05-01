@@ -8,6 +8,12 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  "browser": {
+    "http": false,
+    "https": false,
+    "url": false,
+    "util": false
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^17.1.0",
