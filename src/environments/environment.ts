@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: "/api/",
-     hubUrl: "/hubs/"
+    apiUrl: "https://read-mind-me.azurewebsites.net/api/",
+    hubUrl: "https://read-mind-me.azurewebsites.net/hubs/"
 };
